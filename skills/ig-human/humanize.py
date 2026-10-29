@@ -154,6 +154,7 @@ def pass_lexical(text, lex):
     text = text.replace("...", "\x00ELL\x00")          # protect real ellipses
     text = re.sub(r"\.\s*\.+", ".", text)
     text = re.sub(r"([!?])\s*\.", r"\1", text)
+    text = re.sub(r"\.[!?]+", ".", text)               # a deleted closer leaves its "!"
     text = text.replace("\x00ELL\x00", "...")
     text = re.sub(r"(?m)^[ \t]+$", "", text)
     text = re.sub(r"\n{3,}", "\n\n", text)
